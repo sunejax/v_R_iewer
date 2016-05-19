@@ -23,6 +23,8 @@
  function initialize() {
  $("#fullsc").show();
  $("#placecontainer").html('');
+  $("#placecontainer").hide();
+ 
  $('#currentStatus').html('Translation Complete');
  if (viewerL !== null) {
         viewerL.uninitialize();   //GuiViewer3D is buggy 
