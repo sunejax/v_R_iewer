@@ -24,9 +24,6 @@ else {
 console.log("Enviornment: " + _viewingSvcEnv + " " + _baseURL + " " + _viewerEnv);
 
     // helper object to get us our AuthToken based on our developer keys
-var _myAuthToken = new MyAuthToken(_viewingSvcEnv);
-_myAuthToken.setManualAuthToken("");
-
 
 
 

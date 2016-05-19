@@ -130,7 +130,7 @@ function transtatus() {
 $(document).ready(function() {
 
         // upload a file to the given bucket
-    $("#form_uploadFile").submit(function(evt) {
+    $("#form_uploadFile").on('click touchstart',function(evt) {
         evt.preventDefault();
 
             // make sure they specified a bucketName
