@@ -1,0 +1,55 @@
+ .dbgs{
+	display: none;
+}
+#form_uploadFile{
+position: absolute;
+top: 300px;
+right: 20px;
+
+}
+html{
+background-image: url("../images/bg.png");
+background-repeat: repeat;
+font-family: 'Roboto Condensed', sans-serif;
+color: white;
+}
+#fullsc{
+
+position: absolute;
+top: 250px;
+right: 193px;
+display: none;
+}
+#vv{
+position:absolute;
+width:950px;
+height:500px;
+left:20px;
+
+}
+
+
+#placeholder{
+font-size: 200px;
+position: absolute;
+top: 40px;
+left: 100px;
+text-shadow: 2px 2px #ff0000;
+
+
+}
+#viewerL{
+	position:absolute;
+	width:50%;
+	height:100%
+
+
+}
+#viewerR{
+	position:absolute;
+	width:50%;
+	height:100%;
+	margin-left:50%;
+
+
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="description" content="">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ <title>v_R_iewer</title>
+ <link href="ogw_files/current.css" rel="stylesheet">
+ <script type="text/javascript">
+ var token;var strasd; var ref;
+ </script>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+
+ <script type="text/javascript">
+ ///////////////////////////////////////////////////////////////////////////////////
+ function initialize() {
+ $("#fullsc").show();
+ $("#placecontainer").html('');
+ $('#currentStatus').html('Translation Complete');
+ if (viewerL !== null) {
+        viewerL.uninitialize();   //GuiViewer3D is buggy 
+        viewerL = null;
+    }
+
+ if (viewerR !== null) {
+        viewerR.uninitialize();
+        viewerR = null;
+    }
+var options = {
+'document' : 'urn:' + strasd,
+'env':'AutodeskProduction',
+'getAccessToken': getToken,
+'refreshToken': getToken,
+};
+var viewerElement = document.getElementById('viewerL');
+ viewerL = new Autodesk.Viewing.Private.GuiViewer3D(viewerElement, {});
+Autodesk.Viewing.Initializer(
+options,
+function() {
+viewerL.initialize();
+loadDocument(viewerL, options.document);
+}
+);
+viewerElement = document.getElementById('viewerR');
+ viewerR = new Autodesk.Viewing.Private.GuiViewer3D(viewerElement, {});
+Autodesk.Viewing.Initializer(
+options,
+function() {
+viewerR.initialize();
+loadDocument(viewerR, options.document);
+}
+);
+}
+
+function loadDocument(viewer, documentId) {
+// Find the first 3d geometry and load that.
+Autodesk.Viewing.Document.load(
+documentId,
+function(doc) {// onLoadCallback
+var geometryItems = [];
+geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
+ 'type' : 'geometry',
+ 'role' : '3d'
+}, true);
+if (geometryItems.length > 0) {
+ viewer.load(doc.getViewablePath(geometryItems[0]));
+}watchCameras();
+},
+function(errorMsg) {// onErrorCallback
+alert("Load Error: " + errorMsg);
+}
+);
+}
+///////////////////////////////////////////////////////////////////////////////////////
+</script>
+<link rel="stylesheet" href="ogw_files/style.css" type="text/css"> 
+<style type="text/css"></style><script src="ogw_files/three.js"></script></head>
+<body>
+<input type="checkbox" name="debuggingmode" size="1" onchange="$('.dbgs').toggle()" style="display:none;"> <!--Remove Display Attribute to have debugger-->
+
+
+<form id="form_uploadFile">
+<div class="row">
+<div class="col-md-6">
+<div class="form-group"> <input type="hidden" value="vriewer" class="form-control" autofocus="" pattern="^[-_.a-z0-9]{3,128}$" id="eb_bucketNameUpload" name="bucketName"></div>
+
+<div class="form-group"><label for="ui_filePicker" style="color:white;">Select File to Upload </label><br> <input id="ui_filePicker" type="file">
+<p id="txt_fileLoadStatus"></p>
+</div>
+
+<button class="btn btn-primary" id="bn_uplaodFile" type="submit">Upload File</button></div>
+<div id="currentStatus"></div>
+
+<div class="col-md-6 form-group dbgs" id="spn_uploadFile" style="color:white"><label for="txt_resUploadFile">Result</label><textarea class="form-control" readonly="readonly" rows="10" id="txt_resUploadFile"></textarea></div>
+</div>
+</form>
+&nbsp;
+<form id="form_urnToEncode">
+<div class="row">
+<div class="col-md-6">
+<div class="form-group"><label for="eb_urnToEncode"></label> <input type=hidden id="eb_urnToEncode" class="form-control" name="urn"></div>
+</div>
+<div class="col-md-6 form-group dbgs"><label for="txt_resEncode64">Result</label><textarea class="form-control" readonly="readonly" rows="10" id="txt_resEncode64"></textarea></div>
+</div>
+</form>
+&nbsp;
+<form id="form_translateFile">
+<div class="row">
+<div class="col-md-6 form-group dbgs" id="spn_translateFile"><label for="txt_resTranslate">Result</label><textarea class="form-control" readonly="readonly" rows="10" id="txt_resTranslate"></textarea></div>
+</div>
+</form>
+&nbsp;
+<form id="form_viewTranslateStatus">
+<div class="row">
+<div class="col-md-6 form-group  dbgs" id="spn_viewTranslationStatus"><label for="txt_resViewTranslateStatus">Result</label><textarea class="form-control" readonly="readonly" rows="10" id="txt_resViewTranslateStatus"></textarea></div>
+</div>
+</form>
+&nbsp;
+
+  <div id= "vv">
+	<div id="viewerL" class="viewer" ></div>
+  	<div id="viewerR" class="viewer" ></div> 
+  </div>
+  
+<div id="placecontainer" ><p id="placeholder">v_R_iewer</p></div>
+  <button name="Fullscreen" type="submit" id ="fullsc" >Fullscreen</button>
+    
+ <script>
+ function fulls() {
+  req = elemv.requestFullScreen || elemv.webkitRequestFullScreen || elemv.mozRequestFullScreen;
+  req.call(elemv);
+ }
+ 
+ var elem  = document.getElementById("fullsc");
+ var elemv = document.getElementById("vv");
+ elem.addEventListener('click',fulls,false); 
+ </script>
+ 
+<script type="text/javascript">
+  document.title = 'v_R_iewer';
+</script>
+<script src="ogw_files/jquery.js">
+</script>
+
+<script type="text/javascript" src="ogw_files/vendor.js"></script>
+<script type="text/javascript">
+var server_url = '//developer.static.autodesk.com';
+var cf_server_url = '//developer.static.autodesk.com';
+var appNames = [];
+</script>
+  <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
+  <script src="ogw_files/kamino.js"></script> <!--If you know the reference you are great. Hint: This file clones the viewer.-->
+  <script src="ogw_files/spin.js"></script>
+  <script src="ogw_files/MyAuthToken.js"></script>
+  <script src="ogw_files/FileUploader.js"></script>
+  <script src="ogw_files/FormSteps.js"></script>
+  <script>
+var fileControl = document.getElementById("ui_filePicker");
+fileControl.addEventListener("change", startRead);
+  </script>
+
+</body></html>
