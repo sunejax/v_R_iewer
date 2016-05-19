@@ -102,27 +102,7 @@ alert("Load Error: " + errorMsg);
 </div>
 </form>
 &nbsp;
-<form id="form_urnToEncode">
-<div class="row">
-<div class="col-md-6">
-<div class="form-group"><label for="eb_urnToEncode"></label> <input type=hidden id="eb_urnToEncode" class="form-control" name="urn"></div>
-</div>
-<div class="col-md-6 form-group dbgs"><label for="txt_resEncode64">Result</label><textarea class="form-control" readonly="readonly" rows="10" id="txt_resEncode64"></textarea></div>
-</div>
-</form>
-&nbsp;
-<form id="form_translateFile">
-<div class="row">
-<div class="col-md-6 form-group dbgs" id="spn_translateFile"><label for="txt_resTranslate">Result</label><textarea class="form-control" readonly="readonly" rows="10" id="txt_resTranslate"></textarea></div>
-</div>
-</form>
-&nbsp;
-<form id="form_viewTranslateStatus">
-<div class="row">
-<div class="col-md-6 form-group  dbgs" id="spn_viewTranslationStatus"><label for="txt_resViewTranslateStatus">Result</label><textarea class="form-control" readonly="readonly" rows="10" id="txt_resViewTranslateStatus"></textarea></div>
-</div>
-</form>
-&nbsp;
+
 
   <div id= "vv">
 	<div id="viewerL" class="viewer" ></div>
@@ -143,9 +123,7 @@ alert("Load Error: " + errorMsg);
  elem.addEventListener('click',fulls,false); 
  </script>
  
-<script type="text/javascript">
-  document.title = 'v_R_iewer';
-</script>
+
 <script src="ogw_files/jquery.js">
 </script>
 
