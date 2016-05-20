@@ -24,6 +24,9 @@ else {
 console.log("Enviornment: " + _viewingSvcEnv + " " + _baseURL + " " + _viewerEnv);
 
     // helper object to get us our AuthToken based on our developer keys
+var _myAuthToken = new MyAuthToken(_viewingSvcEnv);
+_myAuthToken.setManualAuthToken("");
+
 
 
 
@@ -127,7 +130,7 @@ function transtatus() {
 $(document).ready(function() {
 
         // upload a file to the given bucket
-    $("#form_uploadFile").on('click touchstart',function(evt) {
+    $("#form_uploadFile").submit(function(evt) {
         evt.preventDefault();
 
             // make sure they specified a bucketName

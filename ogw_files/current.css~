@@ -36,7 +36,7 @@ position: absolute;
 top: 40px;
 left: 5vw;
 text-shadow: 2px 2px #ff0000;
-
+z-index: 1;
 
 }
 #viewerL{
@@ -53,6 +53,10 @@ text-shadow: 2px 2px #ff0000;
 	margin-left:50%;
 
 
+}
+#form_uploadFile
+{
+z-index: 2;
 }
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen
