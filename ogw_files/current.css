@@ -62,13 +62,6 @@ z-index: 2;
 {
 z-index: 2;
 }
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 710px) {
-#placeholder{
-display:none;
-}
-}
+
 
 

@@ -54,6 +54,10 @@ z-index: 1;
 
 
 }
+#fullsc{
+z-index: 2;
+
+}
 #form_uploadFile
 {
 z-index: 2;
